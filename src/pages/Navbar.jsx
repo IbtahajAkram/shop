@@ -1,4 +1,4 @@
-import { ShoppingBag } from "lucide-react";
+import { Heart, ShoppingBag } from "lucide-react";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -10,6 +10,8 @@ const Navbar = () => {
   const getUserData = localStorage.getItem("ProfileData");
   const ProfImage = getUserData ? JSON.parse(getUserData)?.ProfImage : "";
   const userName = getUserData ? JSON.parse(getUserData)?.Username : "";
+  const findAllWhishList = useSelector((state)=>state?.cartProducts?.whishList).length;
+  console.log('whishList_Items:',findAllWhishList)
   const [showlogout, setshowlogout] = useState(false);
   const navigate = useNavigate();
   const handleShowLogout = () => {
@@ -88,6 +90,7 @@ if(!getUserData){
                   </svg>
                   Communty
                 </li>
+              
                 <li class="max-lg:py-2 px-4 cursor-pointer">
                   <Link to={"/shopingcart"}>
                     <span class="relative">
@@ -106,6 +109,15 @@ if(!getUserData){
                       </span>
                     </span>
                   </Link>
+                </li>
+                <li class="max-lg:py-2 px-4 cursor-pointer">
+                <span class="relative">
+<Link to={'/whishlist'}>
+                  <Heart />   <span class="absolute left-auto ml-5 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">
+                        {findAllWhishList}
+                      </span>
+</Link>
+                      </span>
                 </li>
                 <li class="flex text-[15px] max-lg:py-2 px-4 hover:text-[#007bff] hover:fill-[#007bff]">
                   {getUserData?.name ? (

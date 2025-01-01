@@ -19,6 +19,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
+import WhishLists from "./WhishLists";
 
 // import Todoos from "./TodoApp/todonew/todoss";
 // import { StateInClass } from "./1/StateInClass";
@@ -66,6 +67,7 @@ const App = () => {
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/product-detail/:id" element={<ProductDetail/>}/>
               <Route path="/shopingcart" element={<ShopingCard />} />
+              <Route path="/whishlist" element={<WhishLists/>}/>
             </Routes>
             <Footer/>
     </Router>
