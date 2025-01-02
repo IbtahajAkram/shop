@@ -15,7 +15,7 @@ const WhishLists = () => {
         <div class="mx-auto lg:max-w-6xl md:max-w-4xl">
           <div class="grid text-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
             {!getWhishList_Items.length ? (
-              <h1 class="text-xl text-center flex items-center justify-center">
+              <h1 class="md:text-xl lg:text-xl text-[14px] text-center flex items-center justify-center">
                 No WhishList Items
               </h1>
             ) : (
