@@ -8,7 +8,7 @@ const WhishLists = () => {
   console.log("itemWhishList", getWhishList_Items);
   return (
     <div className="">
-      <h1 class="text-3xl font-bold py-[62px] bg-gray-50 font-serif text-gray-800  text-center">
+      <h1 class="text-[21px] md:text-[28px] lg:text-[28px] font-bold py-[62px] bg-gray-50 font-serif text-gray-800  text-center">
         WhishList Products
       </h1>
       <div class="font-sans bg-gray-50 px-4 pb-12">

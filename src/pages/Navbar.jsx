@@ -162,7 +162,7 @@ const Navbar = () => {
     
     {/* Wishlist Count Badge */}
     {findAllWhishList > 0 && (
-      <span className="absolute text-xs -top-1 -right-3 bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center">
+      <span className="absolute text-xs -top-1 -right-0 bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center">
         {findAllWhishList}
       </span>
     )}

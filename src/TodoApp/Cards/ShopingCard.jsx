@@ -32,14 +32,14 @@ const ShopingCard = () => {
   };
   return (
     <div>
-      <div class="font-sans max-w-5xl max-md:max-w-xl mx-auto bg-white py-4">
-        <h1 class="text-3xl font-bold mt-12 text-gray-800 text-center">
+      <div class="font-sans p-10 max-w-5xl max-md:max-w-xl mx-auto bg-white py-4">
+        <h1 className="md:text-[27px] text-[20px] lg:text-[30px] md:font-bold mt-12 text-gray-800 text-center">
           Shopping Cart
         </h1>
         <Link to={"/"}>
           {" "}
-          <span className="flex">
-            <ArrowLeft />
+          <span className="flex ml-1 mx-7 items-center mt-12 md:text-[17px] text-[14px]">
+            <ArrowLeft height={'18px'} className="md:h-[23px] lg:h-[23px]" />
             &nbsp; Back
           </span>
         </Link>
@@ -63,10 +63,10 @@ const ShopingCard = () => {
                       </div>
 
                       <div class="flex flex-col">
-                        <h3 class="text-base font-bold text-gray-800">
+                        <h3 class="text-[14px]  md:text-[16.6px] font-bold text-gray-800">
                           {items?.title}
                         </h3>
-                        <p class="text-xs font-semibold text-gray-500 mt-0.5">
+                        <p class="text-xs   font-semibold text-gray-500 mt-0.5">
                           Catagory: {items?.catagory}
                         </p>
 
@@ -122,9 +122,9 @@ const ShopingCard = () => {
                 );
               })
             ) : (
-              <div className="absolute text-[19px]  mt-[41px]">
+              <div className=" mx-[22px] md:text-[19px]  md:-mt-[32px] lg:-mt-[32px]">
                 <div className="empty-cart-message text-center text-gray-500 mt-6">
-                  <p className="text-lg font-semibold">
+                  <p className="md:text-lg lg:text-lg md:font-semibold lg:font-semibold">
                     Your cart is currently empty.
                   </p>
                   {/* <p className="text-sm">Start adding some items to make it lively!</p> */}
@@ -134,8 +134,8 @@ const ShopingCard = () => {
             <hr class="border-gray-300" />
           </div>
 
-          <div class="bg-gray-100 rounded-md p-4 h-max">
-            <h3 class="text-lg max-sm:text-base font-bold text-gray-800 border-b border-gray-300 pb-2">
+          <div class="bg-gray-100 mt-8 md:mt-[49px] rounded-md p-4  h-max">
+            <h3 class="md:text-lg lg:text-lg max-sm:text-base font-bold text-gray-800 border-b border-gray-300 pb-2">
               Order Summary
             </h3>
 
