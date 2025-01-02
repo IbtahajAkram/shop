@@ -36,7 +36,7 @@ const ShopingCard = () => {
         <h1 className="md:text-[27px] text-[20px] lg:text-[30px] md:font-bold mt-12 text-gray-800 text-center">
           Shopping Cart
         </h1>
-        <Link to={"/"}>
+        <Link to={"/allproducts"}>
           {" "}
           <span className="flex ml-1 mx-7 items-center mt-12 md:text-[17px] text-[14px]">
             <ArrowLeft height={'18px'} className="md:h-[23px] lg:h-[23px]" />

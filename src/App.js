@@ -20,6 +20,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import WhishLists from "./WhishLists";
+import NotFoundPage from "./TodoApp/Cards/NotFoundPage";
 
 // import Todoos from "./TodoApp/todonew/todoss";
 // import { StateInClass } from "./1/StateInClass";
@@ -61,14 +62,15 @@ const App = () => {
 <Navbar/>
           <ToastContainer />
             <Routes>
-              <Route path="/" element={<Card Card={apiData} />} />
-              <Route path="/home" element={<Home/>}/>
+              <Route path="/allproducts" element={<Card Card={apiData} />} />
+              <Route path="/" element={<Home/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/product-detail/:id" element={<ProductDetail/>}/>
               <Route path="/shopingcart" element={<ShopingCard />} />
               <Route path="/whishlist" element={<WhishLists/>}/>
-            </Routes>
+              <Route path="*" element={<NotFoundPage />} />
+                          </Routes>
             <Footer/>
     </Router>
   );

@@ -203,7 +203,7 @@ const Navbar = () => {
 
   {/* Profile */}
   <div className="flex flex-col items-center">
-    <NavLink to="/profile">
+    <NavLink to="/">
       <img
         src={ProfImage || "https://via.placeholder.com/30"}
         alt="Profile"
