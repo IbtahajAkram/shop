@@ -187,7 +187,18 @@ const CATEGORIES = [
       image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa',
       tag: 'Bestseller',
     },
-  
+    {
+      title: 'Designer Sunglasses',
+      price: 149.99,
+      image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083',
+      tag: 'New',
+    },
+    {
+      title: 'Elegant Evening Gown',
+      price: 399.99,
+      image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446',
+      tag: 'Sale',
+    },
   ];
   return (
     <div className="font-sans">
