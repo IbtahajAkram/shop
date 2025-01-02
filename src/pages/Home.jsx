@@ -187,12 +187,7 @@ const CATEGORIES = [
       image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa',
       tag: 'Bestseller',
     },
-    {
-      title: 'Ultra Smart Watch',
-      price: 259.99,
-      image: 'https://tse2.mm.bing.net/th?id=OIP.naVJj-x6xdBzHtt1ObI0SwHaHa&pid=Api&P=0&h=220',
-      tag: 'Exclusive',
-    },
+  
   ];
   return (
     <div className="font-sans">
