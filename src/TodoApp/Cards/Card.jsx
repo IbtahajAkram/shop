@@ -184,18 +184,105 @@ const Card = ({ Card }) => {
           </div>
         </div>
       </aside>
-      <div className="bg-slate-50 ml-6 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-5">
+      <div className=" bg-slate-50 px-2 md:px-4 py-5 text-black">
+      <div className="lg:hidden">
+        <div className="flex flex-col gap-4 p-4">
+          <button
+            onClick={() => setCategoryMenuOpen(!isCategoryMenuOpen)}
+            className="bg-[#007bff] text-white px-8 py-2 rounded-md"
+          >
+            Category
+          </button>
+          {isCategoryMenuOpen && (
+            <ul className="space-y-2">
+              {categories?.map((category) => (
+                <li
+                  key={category}
+                  onClick={() => setFiltProduct(category)}
+                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <button
+            onClick={() => setPriceMenuOpen(!isPriceMenuOpen)}
+            className="bg-[#007bff] text-white px-8 py-2 rounded-md"
+          >
+            Price Range
+          </button>
+          {isPriceMenuOpen && (
+            <ul className="space-y-2">
+              <li
+                onClick={() => handlePriceFilter("0-100")}
+                className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                0 to 100$
+              </li>
+              <li
+                onClick={() => handlePriceFilter("101-500")}
+                className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                101 to 500$
+              </li>
+              <li
+                onClick={() => handlePriceFilter("501-1000")}
+                className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                501 to 1000$
+              </li>
+            </ul>
+          )}
+
+          <button
+            onClick={() => setSortMenuOpen(!isSortMenuOpen)}
+            className="bg-[#007bff] text-white px-8 py-2 rounded-md"
+          >
+            Sort By
+          </button>
+          {isSortMenuOpen && (
+            <ul className="space-y-2">
+              <li
+                onClick={() => handlePriceFilter("0-100")}
+                className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                Price: Low to High
+              </li>
+              <li
+                onClick={() => handlePriceFilter("101-500")}
+                className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                Price: High to Low
+              </li>
+            </ul>
+          )}
+
+          {/* Search Bar */}
+         
+        </div>
+      </div>
+</div>
+
+            {/* Filters and Search Bar */}
+      
+
+            {/* Price Range Filter */}
+          
+
+            {/* Sort By Filter */}
+            <div className= " hidden md:block lg:block sm:block bg-slate-50 ml-6 text-white">
+        <div className="max-w-7xl mx-auto px-3 py-5">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="text-2xl none font-semibold">
               <a href="#" className="text-black hover:text-gray-300">
-                E-Commerce
               </a>
             </div>
 
             {/* Filters and Search Bar */}
-            <div className="flex items-center -ml-10 space-x-6">
+            <div className="flex items-center md:-ml-10 md:space-x-4">
               {/* Category Filter */}
               <div className="relative">
                 <button
@@ -297,13 +384,17 @@ const Card = ({ Card }) => {
             </div>
           </div>
         </div>
+
       </div>
+            {/* Search Bar */}
+          
+
 
       <div className="font-sans mt-4  lg:ml-[193px] p-2 lg:max-w-6xl md:max-w-3xl">
-        <div className="grid grid-cols-2 sm:grid-cols- lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="flex flex-row justify-center items-center flex-wrap md:ml-[74px] gap-5">
           {currentProducts?.map((Products, index) => (
             <div
-              className="bg-white  flex flex-col overflow-hidden cursor-pointer hover:shadow-md transition-all card"
+              className="bg-white w-[288px] md:w-[310px]  flex flex-col overflow-hidden cursor-pointer hover:shadow-md transition-all card"
               key={index}
             >
               <div className="w-full">
@@ -401,7 +492,7 @@ const Card = ({ Card }) => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mb-8 mt-6">
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded-full"
           onClick={() => handlePageChange(currentPage - 1)}

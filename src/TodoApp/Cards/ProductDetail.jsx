@@ -28,7 +28,121 @@ const dispatch = useDispatch();
   }, []);
 
   return (
-    <div>
+    <>
+    <div className="block md:hidden">
+    <div className="product-detail-header">
+      <div className="back-button">
+        <ArrowLeft />
+        <NavLink to="/">Back</NavLink>
+      </div>
+      <div className="hidden">
+      <h1 className="breadcrumb  ">
+        {`/ ${productDetail.category} / ${productDetail.title}`}
+      </h1>
+      </div>
+    </div>
+
+    <div className="product-detail-container">
+      <div className="product-images">
+        <div className="thumbnail-images">
+          {[...Array(4)].map((_, index) => (
+            <img
+              key={index}
+              src={productDetail.thumbnail}
+              alt={`Product${index + 1}`}
+              className="thumbnail-image border rounded-lg"
+            />
+          ))}
+        </div>
+
+        <div className="main-image">
+          <InnerImageZoom
+            zoomType="hover"
+            zoomScale={2}
+            src={productDetail.thumbnail}
+            zoomSrc={productDetail.thumbnail}
+            alt="Product"
+            className="main-image-zoom border rounded-lg"
+          />
+        </div>
+      </div>
+
+      <div className="product-info">
+        <h2 className="product-title">{productDetail.title}</h2>
+        <div className="product-price-category">
+          <p className="product-price">{productDetail.price}</p>
+          <p className="product-category">{productDetail.category}</p>
+        </div>
+
+        <div className="rating">
+          {[...Array(5)].map((_, index) => {
+            const filled = index < productDetail.rating;
+            return (
+              <svg
+                key={index}
+                className={`rating-icon ${filled ? "filled" : ""}`}
+                viewBox="0 0 14 13"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+              </svg>
+            );
+          })}
+        </div>
+
+        <div className="sizes">
+          <h3>Sizes</h3>
+          <div className="sizes-options">
+            {["SM", "MD", "LG", "XL"].map((size, index) => (
+              <button
+                key={index}
+                className={`size-option ${size === "MD" ? "selected" : ""}`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button
+          className="add-to-cart-btn"
+          onClick={() => {
+            const items = {
+              title: productDetail.title,
+              price: productDetail.price,
+              productImage: productDetail.thumbnail,
+              category: productDetail.category,
+              id: productDetail.id,
+            };
+            dispatch(AddToCart(items));
+          }}
+        >
+          Add to cart
+        </button>
+
+        <div className="product-description">
+          <h3 className="text-[17px]">About the item</h3>
+          <p className="text-[15px] mt-3">{productDetail.description}</p>
+        </div>
+
+        <div className="product-reviews">
+          <h3>Reviews(5)</h3>
+          <div className="review">
+            <p>{productDetail.rating}</p>
+            <div className="rating-bar">
+              <div className="rating-fill" style={{ width: "66%" }}></div>
+            </div>
+            <p>66%</p>
+          </div>
+
+          <NavLink to="/">
+            <button className="continue-shopping-btn">Continue Shopping...</button>
+          </NavLink>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div className="hidden md:block">
       {/* <h1 className="text-center mt-7 text-3xl font-medium">Product Detail</h1> */}
      
       <div
@@ -210,6 +324,7 @@ const dispatch = useDispatch();
         </div>
       </div>
     </div>
+    </>
   );
 };
 

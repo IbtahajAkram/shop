@@ -20,10 +20,9 @@ body{
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
   overflow: hidden; /* Prevent content from overflowing the card */
-  width: 293px; /* Fixed width for the card */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
   padding: 19px;
-margin-left: 28%;
+
 
 }
 

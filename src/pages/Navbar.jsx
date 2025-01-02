@@ -1,6 +1,5 @@
-import { Heart, ShoppingBag } from "lucide-react";
-import React from "react";
-import { useState, useEffect } from "react";
+import { Heart, ShoppingBag, ShoppingBagIcon, ShoppingBasket } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
@@ -10,51 +9,50 @@ const Navbar = () => {
   const getUserData = localStorage.getItem("ProfileData");
   const ProfImage = getUserData ? JSON.parse(getUserData)?.ProfImage : "";
   const userName = getUserData ? JSON.parse(getUserData)?.Username : "";
-  const findAllWhishList = useSelector((state)=>state?.cartProducts?.whishList).length;
-  console.log('whishList_Items:',findAllWhishList)
+  const findAllWhishList = useSelector((state) => state?.cartProducts?.whishList).length;
   const [showlogout, setshowlogout] = useState(false);
   const navigate = useNavigate();
+
   const handleShowLogout = () => {
     setshowlogout(!showlogout);
   };
-  const handleremoveUserData = ()=>{
-    localStorage.removeItem('ProfileData');
-    navigate('/Login')
-  }
- 
-  useEffect(() => {
-if(!getUserData){
-  navigate('/signup')
-}
-  }, [])
-  
-  
- 
-  return (
-    <div>
-      <header class="shadow-lg font-[sans-serif] tracking-wide relative z-50">
-        <section class="flex items-center relative py-3 lg:px-10 px-4 border-gray-200 border-b bg-white lg:min-h-[70px] max-lg:min-h-[60px]">
-          <NavLink to={'/'} class="shrink-0 max-sm:hidden">
-            <img
-              src="https://tse4.mm.bing.net/th?id=OIP.wjcrA2QJyXWcl-bFkA67ZgHaFj&pid=Api&P=0&h=220"
-              alt="logo"
-              style={{ height: "16vh" }}
-            />
-          </NavLink>
-          <a
-            href="javascript:void(0)"
-            class="hihttps://tse4.mm.bing.net/th?id=OIP.wjcrA2QJyXWcl-bFkA67ZgHaFj&pid=Api&P=0&h=220dden max-sm:block"
-          ></a>
 
-          <div class="flex flex-wrap w-full items-center">
-            <input 
-              type="text"
-              placeholder="Search something..."
-              class="xl:w-80 max-lg:hidden lg:ml-10 max-md:mt-4 max-lg:ml-4 bg-gray-100 border focus:bg-transparent px-4 rounded h-10 outline-none text-sm transition-all"
-            />
-            <div class="ml-auto">
-              <ul class="flex items-center">
-                <li class="max-md:hidden flex items-center text-[15px] max-lg:py-2 px-4 font-medium text-gray-800 cursor-pointer">
+  const handleremoveUserData = () => {
+    localStorage.removeItem("ProfileData");
+    navigate("/Login");
+  };
+
+  useEffect(() => {
+    if (!getUserData) {
+      navigate("/signup");
+    }
+  }, []);
+
+  return (
+    <header className="shadow-lg font-sans tracking-wide bg-white relative z-50">
+      <section className="flex items-center justify-between py-3 px-4 border-b border-gray-200 lg:px-10">
+        {/* Logo */}
+        <NavLink to="/" className="shrink-0">
+          <img
+            src="https://tse4.mm.bing.net/th?id=OIP.wjcrA2QJyXWcl-bFkA67ZgHaFj&pid=Api&P=0&h=220"
+            alt="logo"
+            className="h-12 lg:h-16"
+          />
+        </NavLink>
+
+        {/* Search Bar */}
+        <input
+          type="text"
+          placeholder="Search something..."
+          className=" lg:block xl:w-80 bg-gray-100 border px-4 rounded h-10 outline-none text-sm transition-all focus:bg-transparent"
+        />
+
+        {/* Desktop Icons */}
+        <div className="hidden lg:flex items-center space-x-6">
+          {/* Wishlist */}
+
+          
+                <li class="max-md:hidden flex items-center text-[15px] max-lg:py-2 px-4  text-gray-800 cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="w-4 h-4 mr-2"
@@ -77,7 +75,7 @@ if(!getUserData){
                   </svg>
                   Stores and Services
                 </li>
-                <li class="max-md:hidden flex items-center text-[15px] max-lg:py-2 px-4 font-medium text-gray-800 cursor-pointer">
+                <li class="max-md:hidden flex items-center text-[15px] max-lg:py-2 px-4  text-gray-800 cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="w-4 h-4 mr-2"
@@ -90,11 +88,21 @@ if(!getUserData){
                   </svg>
                   Communty
                 </li>
-              
-                <li class="max-lg:py-2 px-4 cursor-pointer">
-                  <Link to={"/shopingcart"}>
-                    <span class="relative">
-                      <svg
+                
+
+          <div className="relative">
+          <NavLink to={'/whishlist'}>
+            <Heart className="w-6 h-6 text-gray-600 cursor-pointer" />
+            <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {findAllWhishList}
+            </span>
+            </NavLink>
+          </div>
+
+          {/* Cart */}
+          <div className="relative">
+          <NavLink to={'/shopingcart'}>
+          <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="w-6 h-6 inline"
                         viewBox="0 0 512 512"
@@ -103,185 +111,110 @@ if(!getUserData){
                           d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
                           data-original="#000000"
                         ></path>
-                      </svg>
-                      <span class="absolute left-auto -ml-1 -top-2 rounded-full bg-red-500 px-1 py-0 text-xs text-white">
-                        {countItems}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-                <li class="max-lg:py-2 px-4 cursor-pointer">
-                <span class="relative">
-<Link to={'/whishlist'}>
-                  <Heart />   <span class="absolute left-auto ml-5 -top-1 rounded-full bg-red-500 px-1 py-0 text-xs text-white">
-                        {findAllWhishList}
-                      </span>
-</Link>
-                      </span>
-                </li>
-                <li class="flex text-[15px] max-lg:py-2 px-4 hover:text-[#007bff] hover:fill-[#007bff]">
-                  {getUserData?.name ? (
-                    <Link to={"/Login"}>
-                      <button class="px-4 py-2 text-sm font-semibold text-gray-800 border border-[#333] bg-transparent">
-                        Sign In
-                      </button>
-                    </Link>
-                  ) : (
-                    ""
-                  )}
-                  <li className="cursor-pointer flex gap-3 items-center">
-                    {userName}
-                    {ProfImage ? (
-                      <img
-                        onClick={handleShowLogout}
-                        className="cursor-pointer rounded-full"
-                        style={{ height: "7vh", width:"7vh" ,objectFit:"cover"}}
-                        src={ProfImage}
-                        alt="UserProfile"
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </li>
-                  {showlogout ? (
-                      <button onClick={handleremoveUserData} className="h-[45px] px-7  mt-[50px] absolute bg-slate-50 cursor-pointer ml-[79px] rounded-lg">
-                      Log out
-                    </button>
-                  ) : (
-                    ""
-                  )}
-                </li>
-                <li id="toggleOpen" class="lg:hidden">
-                  <button>
-                    <svg
-                      class="w-7 h-7"
-                      fill="#333"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                  </button>
-                </li>
-              </ul>
-            </div>
+                      </svg>            <span className="absolute -top-2 -right-3 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {countItems}
+            </span>
+            </NavLink>
           </div>
-        </section>
 
-        <div
-          id="collapseMenu"
-          class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50"
-        >
-          <button
-            id="toggleClose"
-            class="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3.5 h-3.5 fill-black"
-              viewBox="0 0 320.591 320.591"
-            >
-              <path
-                d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
-                data-original="#000000"
-              ></path>
-              <path
-                d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"
-                data-original="#000000"
-              ></path>
-            </svg>
-          </button>
-
-          <ul class="lg:flex lg:flex-wrap lg:items-center lg:justify-center px-10 py-3 bg-[#007bff] min-h-[46px] gap-4 max-lg:space-y-4 max-lg:fixed max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-lg max-lg:overflow-auto z-50">
-            <li class="mb-6 hidden max-lg:block">
-              <a href="javascript:void(0)">
-                <img
-                  src="https://readymadeui.com/readymadeui-white.svg"
-                  alt="logo"
-                  class="w-36"
-                />
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-yellow-300 text-[15px] font-medium block"
+          {/* Profile */}
+          <div className="relative flex items-center gap-3">
+          {userName}
+            {ProfImage ? (
+              <img
+                src={ProfImage}
+                alt="Profile"
+                className="w-[37px] h-[37px] rounded-full object-fill cursor-pointer"
+                onClick={handleShowLogout}
+              />
+            ) : (
+              <Link
+                to="/Login"
+                className="text-gray-600 text-sm font-medium hover:underline"
               >
-                New
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Brands
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Makeup
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Hair
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Tools & Brushes
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Bath & body
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Clean Body
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Gifts
-              </a>
-            </li>
-            <li class="max-lg:border-b max-lg:py-3 px-3">
-              <a
-                href="javascript:void(0)"
-                class="hover:text-yellow-300 text-white text-[15px] font-medium block"
-              >
-                Skincare
-              </a>
-            </li>
-          </ul>
+                Login
+              </Link>
+            )}
+            {showlogout && (
+              <div className="absolute -right-7 mt-[82px] bg-white border shadow-lg rounded">
+                <button
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  onClick={handleremoveUserData}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </header>
+      </section>
+
+      {/* Mobile Bottom Icons */}
+      {/* Mobile Bottom Icons */}
+<div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3 lg:hidden">
+  {/* Wishlist */}
+  <div className="flex flex-col items-center">
+    <NavLink to={'/whishlist'}>
+
+  <div className="relative ">
+    {/* Heart Icon */}
+    <Heart className="w-6 h-6 text-gray-600" />
+    
+    {/* Wishlist Count Badge */}
+    {findAllWhishList > 0 && (
+      <span className="absolute text-xs -top-1 -right-3 bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center">
+        {findAllWhishList}
+      </span>
+    )}
+  <span className="text-xs -ml-2 text-gray-600">whishlist</span>
+  </div>
+
+    </NavLink>
+</div>
+
+
+
+  {/* Cart with Count */}
+  <div className="relative flex flex-col items-center">
+    <NavLink to={'/shopingcart'}>
+
+    <div className="relative">
+  
+    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6 inline"
+                        viewBox="0 0 512 512"
+                      >
+                        <path
+                          d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
+                          data-original="#000000"
+                        ></path>
+                      </svg> 
+                          {countItems > 0 && (
+        <span className="absolute -top-1 -right-3 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+          {countItems}
+        </span>
+      )}
     </div>
+    <span className="text-xs text-gray-600">Cart</span>
+    </NavLink>
+
+  </div>
+
+  {/* Profile */}
+  <div className="flex flex-col items-center">
+    <NavLink to="/profile">
+      <img
+        src={ProfImage || "https://via.placeholder.com/30"}
+        alt="Profile"
+        className="w-6 h-6 rounded-full"
+      />
+    </NavLink>
+    <span className="text-xs text-gray-600">Profile</span>
+  </div>
+</div>
+
+    </header>
   );
 };
 
