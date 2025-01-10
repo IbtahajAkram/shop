@@ -398,7 +398,7 @@ const Card = ({ Card }) => {
               key={index}
             >
               <div className="w-full">
-                <Link to={`product-detail/${Products.id}`}>
+                <Link to={`/product-detail/${Products.id}`}>
                   <img
                     className="w-full object-cover object-top aspect-[230/307]"
                     src={Products.thumbnail}
